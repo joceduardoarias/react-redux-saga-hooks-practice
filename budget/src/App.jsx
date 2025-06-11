@@ -1,9 +1,10 @@
+import MainHeader from "./components/MainHeader"
 
 function App() {
 
   return (
     <>
-      <h1 className="text-center my-4">Budget</h1>
+    <MainHeader title={"Budget"}/>      
       <div className="container bg-light rounded shadow p-4" style={{ maxWidth: 400 }}>
         <h5 className="text-secondary text-center">YOUR BALANCE</h5>
         <p className="h2 text-center mb-4 fw-bold">$2,550.53</p>
@@ -19,7 +20,7 @@ function App() {
         </div>
       </div>
 
-      <p>History</p>
+      <MainHeader title={"History"} type="h3"/>   
       <div className="card p-3 mb-2 border-danger">
         <div className="row align-items-center text-end">
           <div className="col-6 text-start">
@@ -42,8 +43,8 @@ function App() {
           </div>
         </div>
       </div>
-
-      <p>Add new transaction</p>
+      
+      <MainHeader title={"Add new transaction"} type="h3"/>
       <form>
         <div className="row align-items-end mb-3">
           <div className="col-md-8">
