@@ -1,7 +1,12 @@
 import React from 'react'
 import ButtonSaveOrCancel from "../components/ButtonSaveOrCancel"
+import { useState } from 'react'
 
-const NewEntryForm = () => {
+const NewEntryForm = ({ addEntry }) => {
+    
+    const [description, setDescription] = useState('')
+    const [value, setValue] = useState(0)
+
     return (
         <form>
             <div className="row align-items-end mb-3">
@@ -15,6 +20,8 @@ const NewEntryForm = () => {
                             type="text"
                             className="form-control"
                             placeholder="New shiny thing"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
                 </div>
@@ -30,13 +37,15 @@ const NewEntryForm = () => {
                             className="form-control"
                             id="value"
                             placeholder="100.00"
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
                         />
                     </div>
                 </div>
             </div>
 
             <div className="form-check form-switch mb-3">
-                <ButtonSaveOrCancel />
+                <ButtonSaveOrCancel addEntry={addEntry} description={description} value={value}/>
             </div>
         </form>
     )
