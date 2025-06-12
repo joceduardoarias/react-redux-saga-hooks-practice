@@ -6,7 +6,7 @@ const NewEntryForm = ({ addEntry }) => {
     
     const [description, setDescription] = useState('')
     const [value, setValue] = useState(0)
-
+    const [isExpenese, setisExpenese] = useState(false)
     return (
         <form>
             <div className="row align-items-end mb-3">
@@ -43,9 +43,17 @@ const NewEntryForm = ({ addEntry }) => {
                     </div>
                 </div>
             </div>
-
+            <input            
+                className="form-check-input"
+                type="checkbox"
+                checked={isExpenese}
+                onChange={() => setisExpenese(oldState => !oldState)}
+            />
+            <label className="form-check-label" htmlFor="isExpense">
+                Is Expense
+            </label>
             <div className="form-check form-switch mb-3">
-                <ButtonSaveOrCancel addEntry={addEntry} description={description} value={value}/>
+                <ButtonSaveOrCancel addEntry={addEntry} description={description} value={value} isExpense={isExpenese}/>
             </div>
         </form>
     )
