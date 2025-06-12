@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonSaveOrCancel from "../components/ButtonSaveOrCancel"
-import { useState } from 'react'
 
 const NewEntryForm = ({ addEntry }) => {
-    
     const [description, setDescription] = useState('')
     const [value, setValue] = useState(0)
-    const [isExpenese, setisExpenese] = useState(false)
+    const [isExpense, setIsExpense] = useState(false)
+
     return (
-        <form>
+        <form className="bg-light rounded shadow p-4 mb-4" style={{ maxWidth: 600, margin: "0 auto" }}>
             <div className="row align-items-end mb-3">
-                <div className="col-md-8">
+                <div className="col-md-8 mb-3 mb-md-0">
                     <label htmlFor="description" className="form-label">Description</label>
                     <div className="input-group">
                         <span className="input-group-text">
@@ -19,13 +18,13 @@ const NewEntryForm = ({ addEntry }) => {
                         <input
                             type="text"
                             className="form-control"
+                            id="description"
                             placeholder="New shiny thing"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
                 </div>
-
                 <div className="col-md-4">
                     <label htmlFor="value" className="form-label">Value</label>
                     <div className="input-group">
@@ -43,17 +42,25 @@ const NewEntryForm = ({ addEntry }) => {
                     </div>
                 </div>
             </div>
-            <input            
-                className="form-check-input"
-                type="checkbox"
-                checked={isExpenese}
-                onChange={() => setisExpenese(oldState => !oldState)}
-            />
-            <label className="form-check-label" htmlFor="isExpense">
-                Is Expense
-            </label>
-            <div className="form-check form-switch mb-3">
-                <ButtonSaveOrCancel addEntry={addEntry} description={description} value={value} isExpense={isExpenese}/>
+            <div className="form-check form-switch mb-4">
+                <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="isExpense"
+                    checked={isExpense}
+                    onChange={() => setIsExpense(oldState => !oldState)}
+                />
+                <label className="form-check-label ms-2" htmlFor="isExpense">
+                    Is Expense
+                </label>
+            </div>
+            <div className="d-flex gap-2 justify-content-end">
+                <ButtonSaveOrCancel
+                    addEntry={addEntry}
+                    description={description}
+                    value={value}
+                    isExpense={isExpense}
+                />
             </div>
         </form>
     )
