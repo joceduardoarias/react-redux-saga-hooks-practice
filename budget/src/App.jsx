@@ -39,18 +39,14 @@ function App() {
     setEntries(result)
   }
 
-  const addEntry = (description, value) => {
-    
-    
+  const addEntry = (description, value, isExpense) => {        
     const newEntry = {
       id: entries.length + 1,
       description : description,
-      value: value
+      value: value,
+      isExpense: isExpense
     }
-
-    setEntries([...entries, newEntry])
-    console.log(entries);
-    
+    setEntries([...entries, newEntry])    
   }
 
   return (
