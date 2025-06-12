@@ -1,4 +1,4 @@
-import DisplayBlance from "./components/DisplayBlance"
+import DisplayBlances from "./components/DisplayBlances"
 import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
 
@@ -7,18 +7,7 @@ function App() {
   return (
     <>
     <MainHeader title={"Budget"}/>      
-      <div className="container bg-light rounded shadow p-4" style={{ maxWidth: 400 }}>
-        <DisplayBlance title={"your balance"} value={0}/>
-        <div className="row text-center">
-          <div className="col border-end">
-            <DisplayBlance title={"income"} color={"text-success"} value={0}/>
-          </div>
-          <div className="col">
-            <DisplayBlance title={"expenses"} color={"text-danger"} value={0}/>
-          </div>
-        </div>
-      </div>
-
+      <DisplayBlances />
       <MainHeader title={"History"} type="h3"/>   
       <div className="card p-3 mb-2 border-danger">
         <div className="row align-items-center text-end">
@@ -41,8 +30,7 @@ function App() {
             </button>
           </div>
         </div>
-      </div>
-      
+      </div>      
       <MainHeader title={"Add new transaction"} type="h3"/>
       <NewEntryForm/>
     </>
