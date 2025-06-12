@@ -1,6 +1,7 @@
 import React from 'react'
 
-const EntryLine = ({ description, value, isExpense = false }) => {
+const EntryLine = ({ id, description, value, isExpense = false, deleteEntry }) => {
+   
     return (
         <>
             <div className={ `card p-3 mb-2 ${ isExpense ? `border-success` : `border-danger` }` }>
@@ -19,6 +20,7 @@ const EntryLine = ({ description, value, isExpense = false }) => {
                         </button>
                         <button
                             className="btn btn-outline-danger btn-sm"
+                            onClick={() => deleteEntry(id)}
                         >
                             🗑️
                         </button>
