@@ -54,7 +54,7 @@ const NewEntryForm = ({ addEntry }) => {
                     Is Expense
                 </label>
             </div>
-            <div className="d-flex gap-2 justify-content-end">
+            <div className="d-flex gap-2 justify-content-end mt-3">
                 <ButtonSaveOrCancel
                     addEntry={addEntry}
                     description={description}
