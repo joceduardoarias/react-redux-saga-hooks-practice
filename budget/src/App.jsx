@@ -77,7 +77,7 @@ function App() {
       setIsOpen(true)
     }
   }
-  const addEntry = (description, value, isExpense) => {
+  const addEntry = () => {
     const newEntry = {
       id: entries.length + 1,
       description: description,
@@ -85,6 +85,7 @@ function App() {
       isExpense: isExpense
     }
     setEntries([...entries, newEntry])
+    resetEntry()
   }
 
   return (
