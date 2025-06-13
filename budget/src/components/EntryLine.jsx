@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const EntryLine = ({ id, description, value, isExpense = false, deleteEntry, setIsOpen }) => {
+const EntryLine = ({ id, description, value, isExpense = false, deleteEntry, editEntry }) => {
    
     return (
         <>
@@ -15,7 +15,7 @@ const EntryLine = ({ id, description, value, isExpense = false, deleteEntry, set
                     <div className="col-3">
                         <button
                             className="btn btn-outline-secondary btn-sm me-2"
-                            onClick={() => setIsOpen(true)}
+                            onClick={() => editEntry(id)}
                         >
                             ✏️
                         </button>
