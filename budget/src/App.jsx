@@ -7,7 +7,7 @@ import ModalEdit from './components/ModalEdit'
 
 var initialEntries = [
   {
-    id: 0,
+    id: 1,
     description: "Work income",
     value: "1000,00",
     isExpense: true
@@ -45,6 +45,17 @@ function App() {
     setEntries(result)
   }
 
+  const editEntry = (id) => {
+    console.log(`Editit entry with id: ${id}`);
+    if (id) {
+      const index = entries.findIndex(entry => entry.id === id)
+      const entry = entries[index]
+      setDescription(entry.description)
+      setValue(entry.value)
+      setIsExpense(entry.isExpense)
+      setIsOpen(true)
+    }
+  }
   const addEntry = (description, value, isExpense) => {
     const newEntry = {
       id: entries.length + 1,
@@ -60,7 +71,7 @@ function App() {
       <MainHeader title={"Budget"} />
       <DisplayBlances />
       <MainHeader title={"History"} type="h3" />
-      <EntryLines entries={entries} deleteEntry={deleteEntry} setIsOpen={setIsOpen}/>
+      <EntryLines entries={entries} deleteEntry={deleteEntry} editEntry={editEntry} />
       <MainHeader title={"Add new transaction"} type="h3" />
       <NewEntryForm
         addEntry={addEntry}
@@ -70,7 +81,15 @@ function App() {
         setDescription={setDescription}
         setValue={setValue}
         setIsExpense={setIsExpense} />
-      <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen}/>  
+      <ModalEdit
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        description={description}
+        value={value}
+        isExpense={isExpense}
+        setDescription={setDescription}
+        setValue={setValue}
+        setIsExpense={setIsExpense} />
     </>
   )
 }
