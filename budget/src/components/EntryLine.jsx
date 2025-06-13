@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ModalEdit from './ModalEdit'
 
 const EntryLine = ({ id, description, value, isExpense = false, deleteEntry }) => {
-   
+   const [isOpen, setIsOpen] = useState(false)
     return (
         <>
             <div className={ `card p-3 mb-2 ${ isExpense ? `border-success` : `border-danger` }` }>
@@ -15,6 +16,7 @@ const EntryLine = ({ id, description, value, isExpense = false, deleteEntry }) =
                     <div className="col-3">
                         <button
                             className="btn btn-outline-secondary btn-sm me-2"
+                            onClick={() => setIsOpen(true)}
                         >
                             ✏️
                         </button>
@@ -27,6 +29,7 @@ const EntryLine = ({ id, description, value, isExpense = false, deleteEntry }) =
                     </div>
                 </div>
             </div>
+            <ModalEdit isOpen={isOpen} setIsopen={setIsOpen}/>
         </>
     )
 }
