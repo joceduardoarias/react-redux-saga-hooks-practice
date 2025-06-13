@@ -16,10 +16,7 @@ const NewEntryForm = ({ addEntry, description, setDescription, value, setValue, 
             />
             <div className="d-flex gap-2 justify-content-end mt-3">
                 <ButtonSaveOrCancel
-                    addEntry={addEntry}
-                    description={description}
-                    value={value}
-                    isExpense={isExpense}
+                    addEntry={addEntry}                    
                 />
             </div>
         </form>
