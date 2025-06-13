@@ -9,32 +9,32 @@ var initialEntries = [
   {
     id: 1,
     description: "Work income",
-    value: "1000,00",
+    value: 1000.00,
     isExpense: true
   },
   {
     id: 2,
     description: "Waater bill",
-    value: "20,00",
+    value: 20.00,
     isExpense: true
   },
   {
     id: 3,
     description: "Rent",
-    value: "300,00",
+    value: 300.00,
     isExpense: false
   },
   {
     id: 4,
     description: "Power bill",
-    value: "50,00",
+    value: 50.00,
     isExpense: true
   },
 ]
 function App() {
   const [entries, setEntries] = useState(initialEntries)
   const [description, setDescription] = useState('')
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState()
   const [isExpense, setIsExpense] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [entryId, setEntryId] = useState()
@@ -51,7 +51,20 @@ function App() {
     }
   }, [isOpen])// Cada vez que isOpen cambia su estado se ejecuta el useEffect  
 
-
+  useEffect(() => {
+    let totalIncome = 0
+    let totalExpenses = 0
+    entries.forEach(entry => {
+      const value = Number(entry.value);
+      if (entry.isExpense) {
+        totalExpenses += value;
+      } else {
+        totalIncome += value;
+      }
+    })
+    let total = totalIncome - totalExpenses
+  }, [entries]) 
+  
   const resetEntry = () => {
     setDescription('')
     setIsExpense(false)
