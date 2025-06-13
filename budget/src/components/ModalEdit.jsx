@@ -1,5 +1,5 @@
 import React from 'react'
-import NewEntryForm from './NewEntryForm';
+import EntryForm from './NewEntryForm';
 
 const ModalEdit = ({ isOpen, setIsopen }) => {
     if (!isOpen) return null;
@@ -12,7 +12,7 @@ const ModalEdit = ({ isOpen, setIsopen }) => {
                         <button type="button" className="btn-close" onClick={() => setIsopen(false)}></button>                        
                     </div>
                     <div className="modal-body">
-                        <NewEntryForm/>
+                        <EntryForm/>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={() => setIsopen(false)}>
