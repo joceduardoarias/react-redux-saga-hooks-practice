@@ -2,7 +2,7 @@ import DisplayBlances from "./components/DisplayBlances"
 import EntryLines from "./components/EntryLines"
 import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
 
 var initialEntries = [
@@ -34,10 +34,30 @@ var initialEntries = [
 function App() {
   const [entries, setEntries] = useState(initialEntries)
   const [description, setDescription] = useState('')
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState('')
   const [isExpense, setIsExpense] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [entryId, setEntryId] = useState()
 
+  useEffect(() => {
+    if (!isOpen && entryId) {
+      const index = entries.findIndex(entry => entry.id === entryId)
+      const newEntries = [...entries] // Hago una copia del array
+      newEntries[index].description = description
+      newEntries[index].value = value
+      newEntries[index].isExpense = isExpense
+      setEntries(newEntries)
+      resetEntry()
+    }
+  }, [isOpen])// Cada vez que isOpen cambia su estado se ejecuta el useEffect  
+
+
+  const resetEntry = () => {
+    setDescription('')
+    setIsExpense(false)
+    setValue('')
+    setEntryId()
+  }
   const deleteEntry = (id) => {
     const result = entries.filter(entry => {
       return entry.id != id
@@ -50,6 +70,7 @@ function App() {
     if (id) {
       const index = entries.findIndex(entry => entry.id === id)
       const entry = entries[index]
+      setEntryId(entry.id)
       setDescription(entry.description)
       setValue(entry.value)
       setIsExpense(entry.isExpense)
