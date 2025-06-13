@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ButtonSaveOrCancel = ({ addEntry, description, value, isExpense }) => {
+const ButtonSaveOrCancel = ({ addEntry }) => {
     const handleClick = (e) => {
         e.preventDefault();
-        addEntry(description, Number(value), isExpense);
+        addEntry();
     };
 
     return (
