@@ -1,5 +1,5 @@
 import React from 'react'
-import EntryForm from './NewEntryForm';
+import EntryForm from './EntryForm';
 
 const ModalEdit = ({ isOpen, setIsOpen, description, setDescription, value, setValue, isExpense, setIsExpense }) => {
     if (!isOpen) return null;
@@ -23,7 +23,7 @@ const ModalEdit = ({ isOpen, setIsOpen, description, setDescription, value, setV
                         <button type="button" className="btn btn-secondary" onClick={() => setIsOpen(false)}>
                             Cerrar
                         </button>                      
-                        <button type="button" className="btn btn-primary">
+                        <button type="button" className="btn btn-primary" onClick={() => setIsOpen(false)}>
                             Guardar cambios
                         </button>
                     </div>
