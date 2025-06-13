@@ -34,10 +34,13 @@ var initialEntries = [
 function App() {
   const [entries, setEntries] = useState(initialEntries)
   const [description, setDescription] = useState('')
-  const [value, setValue] = useState()
+  const [value, setValue] = useState(0)
   const [isExpense, setIsExpense] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [entryId, setEntryId] = useState()
+  const [ expensestotal, setExpensesTotal] = useState(0)
+  const [incomesTotal, setIncomesTotal] = useState(0)
+  const [total, settotal] = useState(0)
 
   useEffect(() => {
     if (!isOpen && entryId) {
@@ -62,7 +65,10 @@ function App() {
         totalIncome += value;
       }
     })
-    let total = totalIncome - totalExpenses
+    let result = totalIncome - totalExpenses
+    setExpensesTotal(totalExpenses)
+    setIncomesTotal(totalIncome)
+    settotal(result)
   }, [entries]) 
   
   const resetEntry = () => {
@@ -104,7 +110,7 @@ function App() {
   return (
     <>
       <MainHeader title={"Budget"} />
-      <DisplayBlances />
+      <DisplayBlances total={total} incomesTotal={incomesTotal} expensestotal={expensestotal}/>
       <MainHeader title={"History"} type="h3" />
       <EntryLines entries={entries} deleteEntry={deleteEntry} editEntry={editEntry} />
       <MainHeader title={"Add new transaction"} type="h3" />
