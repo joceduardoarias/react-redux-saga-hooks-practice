@@ -1,6 +1,8 @@
 import React from 'react'
 
 const EntryForm = ({ description, setDescription, value, setValue, isExpense, setIsExpense }) => {
+    console.log(description);
+    
     return (
         <>
             <div className="row align-items-end mb-3">
