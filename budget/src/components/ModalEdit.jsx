@@ -1,7 +1,7 @@
 import React from 'react'
 import EntryForm from './NewEntryForm';
 
-const ModalEdit = ({ isOpen, setIsOpen }) => {
+const ModalEdit = ({ isOpen, setIsOpen, description, setDescription, value, setValue, isExpense, setIsExpense }) => {
     if (!isOpen) return null;
     return (
         <div className="modal show fade d-block" tabIndex="-1" style={{ background: "rgba(0,0,0,0.5)" }}>
@@ -12,7 +12,12 @@ const ModalEdit = ({ isOpen, setIsOpen }) => {
                         <button type="button" className="btn-close" onClick={() => setIsOpen(false)}></button>                        
                     </div>
                     <div className="modal-body">
-                        <EntryForm/>
+                        <EntryForm description={description}
+                            value={value}
+                            isExpense={isExpense}
+                            setDescription={setDescription}
+                            setValue={setValue}
+                            setIsExpense={setIsExpense} />
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={() => setIsOpen(false)}>
