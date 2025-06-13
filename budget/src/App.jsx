@@ -3,6 +3,8 @@ import EntryLines from "./components/EntryLines"
 import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
 import { useState } from "react"
+import ModalEdit from './components/ModalEdit'
+
 var initialEntries = [
   {
     id: 0,
@@ -31,7 +33,11 @@ var initialEntries = [
 ]
 function App() {
   const [entries, setEntries] = useState(initialEntries)
-  
+  const [description, setDescription] = useState('')
+  const [value, setValue] = useState(0)
+  const [isExpense, setIsExpense] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
   const deleteEntry = (id) => {
     const result = entries.filter(entry => {
       return entry.id != id
@@ -39,14 +45,14 @@ function App() {
     setEntries(result)
   }
 
-  const addEntry = (description, value, isExpense) => {        
+  const addEntry = (description, value, isExpense) => {
     const newEntry = {
       id: entries.length + 1,
-      description : description,
+      description: description,
       value: value,
       isExpense: isExpense
     }
-    setEntries([...entries, newEntry])    
+    setEntries([...entries, newEntry])
   }
 
   return (
@@ -54,9 +60,17 @@ function App() {
       <MainHeader title={"Budget"} />
       <DisplayBlances />
       <MainHeader title={"History"} type="h3" />
-      <EntryLines entries={entries} deleteEntry={deleteEntry} />
+      <EntryLines entries={entries} deleteEntry={deleteEntry} setIsOpen={setIsOpen}/>
       <MainHeader title={"Add new transaction"} type="h3" />
-      <NewEntryForm addEntry={addEntry}/>
+      <NewEntryForm
+        addEntry={addEntry}
+        description={description}
+        value={value}
+        isExpense={isExpense}
+        setDescription={setDescription}
+        setValue={setValue}
+        setIsExpense={setIsExpense} />
+      <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen}/>  
     </>
   )
 }
