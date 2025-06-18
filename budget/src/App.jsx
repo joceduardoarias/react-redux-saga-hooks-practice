@@ -4,6 +4,7 @@ import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
 import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
+import { configureStore } from '@reduxjs/toolkit';
 
 var initialEntries = [
   {
@@ -106,6 +107,12 @@ function App() {
     setEntries([...entries, newEntry])
     resetEntry()
   }
+  
+  const store = configureStore({
+  reducer: (state = initialEntries, action) => state
+});
+
+console.log("Store: ", store.getState());
 
   return (
     <>
