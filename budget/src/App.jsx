@@ -4,7 +4,6 @@ import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
 import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
-import { configureStore } from '@reduxjs/toolkit';
 
 var initialEntries = [
   {
@@ -32,6 +31,7 @@ var initialEntries = [
     isExpense: true
   },
 ]
+
 function App() {
   const [entries, setEntries] = useState(initialEntries)
   const [description, setDescription] = useState('')
@@ -108,12 +108,12 @@ function App() {
     resetEntry()
   }
   
-  const store = configureStore({
-  reducer: (state = initialEntries, action) => state
-});
-
-console.log("Store: ", store.getState());
-
+  // Middleware para loguear acciones
+  // const loggerMiddleware = storeAPI => next => action => {
+  //   console.log('Action dispatched:', action)
+  //   return next(action)
+  // }
+                        
   return (
     <>
       <MainHeader title={"Budget"} />
