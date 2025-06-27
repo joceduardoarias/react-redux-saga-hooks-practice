@@ -1,22 +1,16 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+// Este archivo configura y exporta la función para crear el store de Redux Toolkit.
+// Se combinan los reducers de la aplicación (por ahora solo 'entries') usando combineReducers.
+// La función createAppStore retorna una nueva instancia del store lista para usarse en el Provider de React.
+
+import { configureStore as rtkConfigureStore, combineReducers } from '@reduxjs/toolkit'
 import entriesReducer from '../reducers/entries.reducers'
 
-const combinedReducers = combineReducers({
-    entries: entriesReducer
-  })
-  
-  const store = configureStore({
-    reducer: combinedReducers,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(loggerMiddleware),
-  })
-
-const configureStore = () => {
-    return configureStore({
+const createAppStore = () => {
+    return rtkConfigureStore({
         reducer: combineReducers({
             entries: entriesReducer
         })
     })
 }
 
-export default configureStore;
+export default createAppStore
