@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { removeEntryRedux } from "../actions/entries.actions";
 
-const EntryLine = ({ id, description, value, isExpense = false, deleteEntry, editEntry }) => {
-   
+const EntryLine = ({ id, description, value, isExpense = false, editEntry }) => {
+   const dispatch = useDispatch();
     return (
         <>
             <div className={ `card p-3 mb-2 ${ isExpense ? `border-success` : `border-danger` }` }>
@@ -21,7 +23,7 @@ const EntryLine = ({ id, description, value, isExpense = false, deleteEntry, edi
                         </button>
                         <button
                             className="btn btn-outline-danger btn-sm"
-                            onClick={() => deleteEntry(id)}
+                            onClick={() => dispatch(removeEntryRedux(id))}
                         >
                             🗑️
                         </button>
