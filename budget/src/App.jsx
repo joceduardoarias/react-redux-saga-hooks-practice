@@ -6,35 +6,7 @@ import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
 import { useSelector } from "react-redux"
 
-var initialEntries = [
-  {
-    id: 1,
-    description: "Work income",
-    value: 1000.00,
-    isExpense: true
-  },
-  {
-    id: 2,
-    description: "Waater bill",
-    value: 20.00,
-    isExpense: true
-  },
-  {
-    id: 3,
-    description: "Rent",
-    value: 300.00,
-    isExpense: false
-  },
-  {
-    id: 4,
-    description: "Power bill",
-    value: 50.00,
-    isExpense: true
-  },
-]
-
-function App() {
-  const [entries, setEntries] = useState(initialEntries)
+function App() {  
   const [description, setDescription] = useState('')
   const [value, setValue] = useState(0)
   const [isExpense, setIsExpense] = useState(false)
@@ -43,7 +15,7 @@ function App() {
   const [ expensestotal, setExpensesTotal] = useState(0)
   const [incomesTotal, setIncomesTotal] = useState(0)
   const [total, settotal] = useState(0)
-  const entriesRedux = useSelector((state) => state.entries)
+  const entries = useSelector((state) => state.entries)
 
   useEffect(() => {
     if (!isOpen && entryId) {
@@ -52,7 +24,7 @@ function App() {
       newEntries[index].description = description
       newEntries[index].value = value
       newEntries[index].isExpense = isExpense
-      setEntries(newEntries)
+      // setEntries(newEntries)
       resetEntry()
     }
   }, [isOpen])// Cada vez que isOpen cambia su estado se ejecuta el useEffect  
@@ -80,12 +52,12 @@ function App() {
     setValue('')
     setEntryId()
   }
-  const deleteEntry = (id) => {
-    const result = entries.filter(entry => {
-      return entry.id != id
-    })
-    setEntries(result)
-  }
+  // const deleteEntry = (id) => {
+  //   const result = entries.filter(entry => {
+  //     return entry.id != id
+  //   })
+  // setEntries(result)
+  // }
 
   const editEntry = (id) => {
     console.log(`Editit entry with id: ${id}`);
@@ -106,7 +78,7 @@ function App() {
       value: value,
       isExpense: isExpense
     }
-    setEntries([...entries, newEntry])
+    // setEntries([...entries, newEntry])
     resetEntry()
   }
   
@@ -121,7 +93,9 @@ function App() {
       <MainHeader title={"Budget"} />
       <DisplayBlances total={total} incomesTotal={incomesTotal} expensestotal={expensestotal}/>
       <MainHeader title={"History"} type="h3" />
-      <EntryLines entries={entriesRedux} deleteEntry={deleteEntry} editEntry={editEntry} />
+      <EntryLines 
+        entries={entries}         
+        editEntry={editEntry} />
       <MainHeader title={"Add new transaction"} type="h3" />
       <NewEntryForm
         addEntry={addEntry}
