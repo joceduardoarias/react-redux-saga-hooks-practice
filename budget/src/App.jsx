@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
 import { useSelector } from "react-redux"
 
-function App() {  
+function App() {    
   const [description, setDescription] = useState('')
   const [value, setValue] = useState(0)
   const [isExpense, setIsExpense] = useState(false)
@@ -52,13 +52,7 @@ function App() {
     setValue('')
     setEntryId()
   }
-  // const deleteEntry = (id) => {
-  //   const result = entries.filter(entry => {
-  //     return entry.id != id
-  //   })
-  // setEntries(result)
-  // }
-
+  
   const editEntry = (id) => {
     console.log(`Editit entry with id: ${id}`);
     if (id) {
