@@ -4,6 +4,7 @@ import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
 import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
+import { useSelector } from "react-redux"
 
 var initialEntries = [
   {
@@ -42,6 +43,7 @@ function App() {
   const [ expensestotal, setExpensesTotal] = useState(0)
   const [incomesTotal, setIncomesTotal] = useState(0)
   const [total, settotal] = useState(0)
+  const entriesRedux = useSelector((state) => state.entries)
 
   useEffect(() => {
     if (!isOpen && entryId) {
@@ -119,7 +121,7 @@ function App() {
       <MainHeader title={"Budget"} />
       <DisplayBlances total={total} incomesTotal={incomesTotal} expensestotal={expensestotal}/>
       <MainHeader title={"History"} type="h3" />
-      <EntryLines entries={entries} deleteEntry={deleteEntry} editEntry={editEntry} />
+      <EntryLines entries={entriesRedux} deleteEntry={deleteEntry} editEntry={editEntry} />
       <MainHeader title={"Add new transaction"} type="h3" />
       <NewEntryForm
         addEntry={addEntry}
