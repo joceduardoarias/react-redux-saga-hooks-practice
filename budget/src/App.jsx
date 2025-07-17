@@ -6,27 +6,19 @@ import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
 import { useSelector } from "react-redux"
 
-function App() {    
-  const [description, setDescription] = useState('')
-  const [value, setValue] = useState(0)
-  const [isExpense, setIsExpense] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const [entryId, setEntryId] = useState()
+function App() {      
   const [ expensestotal, setExpensesTotal] = useState(0)
   const [incomesTotal, setIncomesTotal] = useState(0)
   const [total, settotal] = useState(0)
+  const [entry, setEntry] = useState()
   const entries = useSelector((state) => state.entries)
+  const { isOpen, id } = useSelector((state) => state.modals)
 
   useEffect(() => {
-    if (!isOpen && entryId) {
-      const index = entries.findIndex(entry => entry.id === entryId)
-      const newEntries = [...entries] // Hago una copia del array
-      newEntries[index].description = description
-      newEntries[index].value = value
-      newEntries[index].isExpense = isExpense
-      // setEntries(newEntries)
-      resetEntry()
-    }
+        
+   const index = entries.findIndex(entry => entry.id === id)
+      
+   setEntry(entries[index])
   }, [isOpen])// Cada vez que isOpen cambia su estado se ejecuta el useEffect  
 
   useEffect(() => {
@@ -52,30 +44,7 @@ function App() {
     setValue('')
     setEntryId()
   }
-  
-  const editEntry = (id) => {
-    console.log(`Editit entry with id: ${id}`);
-    if (id) {
-      const index = entries.findIndex(entry => entry.id === id)
-      const entry = entries[index]
-      setEntryId(entry.id)
-      setDescription(entry.description)
-      setValue(entry.value)
-      setIsExpense(entry.isExpense)
-      setIsOpen(true)
-    }
-  }
-  const addEntry = () => {
-    const newEntry = {
-      id: entries.length + 1,
-      description: description,
-      value: value,
-      isExpense: isExpense
-    }
-    // setEntries([...entries, newEntry])
-    resetEntry()
-  }
-  
+     
   // Middleware para loguear acciones
   // const loggerMiddleware = storeAPI => next => action => {
   //   console.log('Action dispatched:', action)
@@ -88,26 +57,12 @@ function App() {
       <DisplayBlances total={total} incomesTotal={incomesTotal} expensestotal={expensestotal}/>
       <MainHeader title={"History"} type="h3" />
       <EntryLines 
-        entries={entries}         
-        editEntry={editEntry} />
+        entries={entries} />
       <MainHeader title={"Add new transaction"} type="h3" />
-      <NewEntryForm
-        addEntry={addEntry}
-        description={description}
-        value={value}
-        isExpense={isExpense}
-        setDescription={setDescription}
-        setValue={setValue}
-        setIsExpense={setIsExpense} />
+      <NewEntryForm />
       <ModalEdit
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        description={description}
-        value={value}
-        isExpense={isExpense}
-        setDescription={setDescription}
-        setValue={setValue}
-        setIsExpense={setIsExpense} />
+        {...entry} />
     </>
   )
 }
