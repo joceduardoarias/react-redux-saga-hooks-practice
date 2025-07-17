@@ -8,8 +8,7 @@ const EntryLines = ({ entries, editEntry }) => {
     {
         entries.map(entry =>(
         <EntryLine 
-          key={entry.id} {...entry}           
-          editEntry={editEntry}/>    
+          key={entry.id} {...entry} />    
         ))
       }
     </>
