@@ -4,11 +4,13 @@
 
 import { configureStore as rtkConfigureStore, combineReducers } from '@reduxjs/toolkit'
 import entriesReducer from '../reducers/entries.reducers'
+import modalsReducer from "../reducers/modals.reducers";
 
 const createAppStore = () => {
     return rtkConfigureStore({
         reducer: combineReducers({
-            entries: entriesReducer
+            entries: entriesReducer,
+            modals: modalsReducer
         })
     })
 }
