@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { removeEntryRedux } from "../actions/entries.actions";
-
-const EntryLine = ({ id, description, value, isExpense = false, editEntry }) => {
+import { removeEntryRedux, updateEntryRedux } from "../actions/entries.actions";
+import { openEditModal } from "../actions/modals.actions";
+const EntryLine = ({id, description, value, isExpense = false}) => {
    const dispatch = useDispatch();
     return (
         <>
@@ -17,7 +17,7 @@ const EntryLine = ({ id, description, value, isExpense = false, editEntry }) => 
                     <div className="col-3">
                         <button
                             className="btn btn-outline-secondary btn-sm me-2"
-                            onClick={() => editEntry(id)}
+                            onClick={() => dispatch(openEditModal(id))} //TODO Aquí esto esta mal se debe corregir!!!
                         >
                             ✏️
                         </button>
