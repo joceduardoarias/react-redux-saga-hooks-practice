@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { addEntryRedux, updateEntryRedux } from "../actions/entries.actions";
+import { closeEditModal } from "../actions/modals.actions";
 
 export const useEntryDetails = (desc = "", val = "", isExp = true) => {
     const [description, setDescription] = useState(desc)
@@ -33,7 +34,12 @@ export const useEntryDetails = (desc = "", val = "", isExp = true) => {
             isExpense
         })
         )
-         setDescription('')
+
+        dispatch(
+            closeEditModal()
+        )
+
+        setDescription('')
         setValue(0)
         setIsExpense(false)
     }
