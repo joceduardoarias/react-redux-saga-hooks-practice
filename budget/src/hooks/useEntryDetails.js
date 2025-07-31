@@ -21,9 +21,8 @@ export const useEntryDetails = (desc = "", val = "", isExp = true) => {
             value,
             isExpense
         }))
-        setDescription('')
-        setValue(0)
-        setIsExpense(false)
+        
+        restValues()
     }
 
     const updateEntry = (id) => {
@@ -39,9 +38,14 @@ export const useEntryDetails = (desc = "", val = "", isExp = true) => {
             closeEditModal()
         )
 
+        restValues()
+        
+    }
+    const restValues = () => {
         setDescription('')
         setValue(0)
         setIsExpense(false)
     }
+    
     return { description, setDescription, value, setValue, isExpense, setIsExpense, addEntry, updateEntry }
 }
