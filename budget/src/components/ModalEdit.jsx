@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { closeEditModal } from "../actions/modals.actions"
 import { useEntryDetails } from "../hooks/useEntryDetails";
 
-const ModalEdit = ({ isOpen, description, value, isExpense }) => {
+const ModalEdit = ({ isOpen, description, value, isExpense, id }) => {
         
     const entryUpadte = useEntryDetails(description, value, isExpense)
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const ModalEdit = ({ isOpen, description, value, isExpense }) => {
                         <button type="button" className="btn btn-secondary" onClick={() => dispatch(closeEditModal())}>
                             Cerrar
                         </button>
-                        <button type="button" className="btn btn-primary" onClick={() => dispatch(closeEditModal())}>
+                        <button type="button" className="btn btn-primary" onClick={() => entryUpadte.updateEntry(id)}>
                             Guardar cambios
                         </button>
                     </div>
