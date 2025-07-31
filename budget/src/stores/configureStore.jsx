@@ -5,13 +5,20 @@
 import { configureStore as rtkConfigureStore, combineReducers } from '@reduxjs/toolkit'
 import entriesReducer from '../reducers/entries.reducers'
 import modalsReducer from "../reducers/modals.reducers";
+import createSagaMiddleware from "redux-saga";
 
 const createAppStore = () => {
+        const sagaMiddleware = createSagaMiddleware();
+    // const middleware = [sagaMidleware]
+
     return rtkConfigureStore({
         reducer: combineReducers({
             entries: entriesReducer,
             modals: modalsReducer
-        })
+        }),
+
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware)
     })
 }
 
