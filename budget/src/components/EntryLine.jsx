@@ -4,6 +4,7 @@ import { removeEntryRedux, updateEntryRedux } from "../actions/entries.actions";
 import { openEditModal } from "../actions/modals.actions";
 const EntryLine = ({id, description, value, isExpense = false}) => {
    const dispatch = useDispatch();
+   dispatch( { type: 'TEST_MESSAGE' } )
     return (
         <>
             <div className={ `card p-3 mb-2 ${ isExpense ? `border-success` : `border-danger` }` }>
@@ -17,7 +18,7 @@ const EntryLine = ({id, description, value, isExpense = false}) => {
                     <div className="col-3">
                         <button
                             className="btn btn-outline-secondary btn-sm me-2"
-                            onClick={() => dispatch(openEditModal(id))} //TODO Aquí esto esta mal se debe corregir!!!
+                            onClick={() => dispatch(openEditModal(id))}
                         >
                             ✏️
                         </button>
