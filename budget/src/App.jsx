@@ -4,7 +4,9 @@ import MainHeader from "./components/MainHeader"
 import NewEntryForm from "./components/NewEntryForm"
 import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllEntries } from "./sagas/entriesSaga"
+
 
 function App() {      
   const [ expensestotal, setExpensesTotal] = useState(0)
@@ -38,12 +40,17 @@ function App() {
     settotal(result)
   }, [entries]) 
   
-  const resetEntry = () => {
-    setDescription('')
-    setIsExpense(false)
-    setValue('')
-    setEntryId()
-  }
+  const dispatch = useDispatch()
+
+  useEffect( () =>{
+    dispatch(getAllEntries())
+  }, [])
+  // const resetEntry = () => {
+  //   setDescription('')
+  //   setIsExpense(false)
+  //   setValue('')
+  //   setEntryId()
+  // }
      
   // Middleware para loguear acciones
   // const loggerMiddleware = storeAPI => next => action => {
