@@ -4,7 +4,7 @@ import { removeEntryRedux, updateEntryRedux } from "../actions/entries.actions";
 import { openEditModal } from "../actions/modals.actions";
 const EntryLine = ({id, description, value, isExpense = false}) => {
    const dispatch = useDispatch();
-   dispatch( { type: 'TEST_MESSAGE' } )
+   
     return (
         <>
             <div className={ `card p-3 mb-2 ${ isExpense ? `border-success` : `border-danger` }` }>
