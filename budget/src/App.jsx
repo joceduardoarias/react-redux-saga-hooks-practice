@@ -5,7 +5,7 @@ import NewEntryForm from "./components/NewEntryForm"
 import { useState, useEffect } from "react"
 import ModalEdit from './components/ModalEdit'
 import { useDispatch, useSelector } from "react-redux"
-import { getAllEntries } from "./sagas/entriesSaga"
+import { getAllEntriesRedux } from "./actions/entries.actions"
 
 
 function App() {      
@@ -43,20 +43,9 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect( () =>{
-    dispatch(getAllEntries())
+    dispatch(getAllEntriesRedux())
   }, [])
-  // const resetEntry = () => {
-  //   setDescription('')
-  //   setIsExpense(false)
-  //   setValue('')
-  //   setEntryId()
-  // }
-     
-  // Middleware para loguear acciones
-  // const loggerMiddleware = storeAPI => next => action => {
-  //   console.log('Action dispatched:', action)
-  //   return next(action)
-  // }
+  
                         
   return (
     <>
