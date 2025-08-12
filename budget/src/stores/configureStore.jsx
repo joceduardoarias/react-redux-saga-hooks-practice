@@ -6,7 +6,7 @@ import { configureStore as rtkConfigureStore, combineReducers } from '@reduxjs/t
 import entriesReducer from '../reducers/entries.reducers'
 import modalsReducer from "../reducers/modals.reducers";
 import createSagaMiddleware from "redux-saga";
-import { initSagas } from '../sagas';
+import { rootSaga } from '../sagas';
 
 const createAppStore = () => {
     const sagaMiddleware = createSagaMiddleware();
@@ -21,7 +21,7 @@ const createAppStore = () => {
             getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware)
     })
 
-    initSagas(sagaMiddleware)
+    sagaMiddleware.run(rootSaga)
     
     return store
 

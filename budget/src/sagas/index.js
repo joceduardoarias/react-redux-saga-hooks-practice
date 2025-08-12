@@ -1,6 +1,11 @@
-// import * as testSaga from './testSaga'
-import * as getAllEntries from './entriesSaga'
+import { testSaga } from './testSaga'
+import { getAllEntries } from './entriesSaga'
+import { all } from 'redux-saga/effects'
 
-export function initSagas(sagaMiddleWare) {
-    Object.values(getAllEntries).forEach(sagaMiddleWare.run.bind(sagaMiddleWare))
+export function* rootSaga() {
+    // Object.values(getAllEntries).forEach(sagaMiddleWare.run.bind(sagaMiddleWare))
+    yield all([
+        getAllEntries(),
+        testSaga()
+    ])
 }
