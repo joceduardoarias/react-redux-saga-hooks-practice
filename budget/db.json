@@ -24,5 +24,27 @@
             "value": 50.00,
             "isExpense": true
         }
+    ],
+    "values": [
+        {
+            "id": 1,            
+            "value": 1000.00,
+            "isExpense": true
+        },
+        {
+            "id": 2,            
+            "value": 20.00,
+            "isExpense": true
+        },
+        {
+            "id": 3,            
+            "value": 300.00,
+            "isExpense": false
+        },
+        {
+            "id": 4,            
+            "value": 50.00,
+            "isExpense": true
+        }
     ]
 }
