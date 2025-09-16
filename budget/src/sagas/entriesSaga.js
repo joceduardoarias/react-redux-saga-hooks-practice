@@ -1,18 +1,18 @@
 import { take, call, put, fork } from "redux-saga/effects";
 import entriesTypes from "../actions/entries.actions";
 import Axios from 'axios'
-
+import { populateEntriesRedux, populateEntriesDetailsRedux } from "../actions/entries.actions"
 
 export function* getAllEntries() {
 
-    const result = yield call(Axios, 'http://localhost:5000/entries')
-    console.log(result.data);
-    yield put({ type: entriesTypes.POPULATE_ENTRIES, payload: result.data })
+    const { data } = yield call(Axios, 'http://localhost:5000/entries')
+    console.log(data);
+    yield put(populateEntriesRedux(data))
 }
 
 export function* getEntryDetails(id) {    
     const { data } = yield call(Axios, `http://localhost:5000/values/${id}`)        
-    yield put({ type: entriesTypes.POPULATE_ENTRY_DETAILS, payload: { id, entry: data } })
+    yield put(populateEntriesDetailsRedux(id, data))
 }
 
 export function* getAllEntriesDetails() {    
