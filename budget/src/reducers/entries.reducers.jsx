@@ -13,10 +13,10 @@ const reducer = (state = initialEntries, action) => {
       const nextId = state.length + 1
       return [...state, { ...action.payload, id: nextId }];
 
-    case types.REMOVE_ENTRY:
+    case types.REMOVE_ENTRY_RESULT:
 
       return state.filter(entry => {
-        return entry.id != action.payload
+        return entry.id != action.payload.id
       })
     case types.POPULATE_ENTRY_DETAILS:
     case types.UPDATE_ENTRY:
