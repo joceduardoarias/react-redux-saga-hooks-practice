@@ -5,13 +5,12 @@ const reducer = (state = initialEntries, action) => {
 
   switch (action.type) {
     case types.POPULATE_ENTRIES:
-                  
-      return action.payload    
-      
-    case types.ADD_ENTRY:
 
-      const nextId = state.length + 1
-      return [...state, { ...action.payload, id: nextId }];
+      return action.payload
+
+    case types.ADD_ENTRY_RESULT:
+      
+      return [...state, { ...action.payload }];
 
     case types.REMOVE_ENTRY_RESULT:
 
@@ -21,7 +20,7 @@ const reducer = (state = initialEntries, action) => {
     case types.POPULATE_ENTRY_DETAILS:
     case types.UPDATE_ENTRY:
       console.log("a-> ", action);
-      
+
       const newEntries = [...state]
       const index = newEntries.findIndex(entry => entry.id === action.payload.id)
       newEntries[index] = { ...action.payload.entry }

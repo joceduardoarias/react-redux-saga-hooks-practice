@@ -3,6 +3,7 @@ const entriesTypes = {
     POPULATE_ENTRIES: 'POPULATE_ENTRIES',
     POPULATE_ENTRY_DETAILS: 'POPULATE_ENTRY_DETAILS',
     ADD_ENTRY: 'ADD_ENTRY',
+    ADD_ENTRY_RESULT: 'ADD_ENTRY_RESULT',
     REMOVE_ENTRY: 'REMOVE_ENTRY',
     REMOVE_ENTRY_RESULT: 'REMOVE_ENTRY_RESULT',
     UPDATE_ENTRY: 'UPDATE_ENTRY'
@@ -14,7 +15,7 @@ export const addEntryRedux = (payload) => {
     return { type: entriesTypes.ADD_ENTRY, payload }
 }
 
-export const removeEntryRedux = (id) => {                    
+export const removeEntryRedux = (id) => {                            
     return { type: entriesTypes.REMOVE_ENTRY, payload: { id } }
 }
 
