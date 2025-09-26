@@ -6,17 +6,12 @@ export function* addEntrySaga() {
     yield takeLatest(entriesTypes.ADD_ENTRY, addEntryToDb)
 }
 
-function* addEntryToDb({ payload }) {
-    console.log("addEntryToDb: ", payload);
-
-    const savedEntry = yield call(addEntry, payload);
-    console.log("savedEntry: ", savedEntry);
+function* addEntryToDb({ payload }) {    
+    const savedEntry = yield call(addEntry, payload);    
     yield put({ type: entriesTypes.ADD_ENTRY_RESULT, payload: savedEntry }); // Dispatch action to update the store
 }
 
-async function addEntry(newEntry) {
-    console.log("addEntry: ", newEntry);
-
+async function addEntry(newEntry) {    
     try {
         const response = await axios.post(`http://localhost:5000/entries`, newEntry);
         return response.data;
